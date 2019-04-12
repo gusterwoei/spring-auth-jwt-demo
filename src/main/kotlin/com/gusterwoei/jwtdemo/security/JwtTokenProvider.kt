@@ -79,8 +79,6 @@ class JwtTokenProvider {
     fun validateToken(token: String): Boolean {
         try {
             val claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
-            val user = claims.body.get("user") as HashMap<*, *>
-            user.get("userId")
 
             return !claims.body.expiration.before(Date())
 
